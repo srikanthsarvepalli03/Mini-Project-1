@@ -1,0 +1,32 @@
+<div class="contact-container">
+    <h2>Contact Book</h2>
+
+    <form (ngSubmit)="saveContact()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" [(ngModel)]="contactForm.name" name="name" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="contactForm.email" name="email" required />
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" [(ngModel)]="contactForm.phone" name="phone" required />
+
+        <button type="submit">{{ isEditing ? 'Update Contact' : 'Add Contact' }}</button>
+        <button type="button" (click)="resetForm()">Reset</button>
+    </form>
+
+
+    <div class="contact-list">
+        <ul>
+            <li *ngFor="let contact of contacts">
+                <div>
+                    <p><strong>{{ contact.name }}</strong></p>
+                    <p>Email: {{ contact.email }}</p>
+                    <p>Phone: {{ contact.phone }}</p>
+                    <button (click)="editContact(contact)">Edit</button>
+                    <button (click)="deleteContact(contact.id)">Delete</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
